@@ -81,7 +81,7 @@ The following example
         float y_actual = 0.2f;
         
         float data[8] = {   0, x_axtual, 1,  1,
-                            0, y_actual, 1, -1 };  //row mayor {target, old_agent_pos, others...}
+                            0, y_actual, 1, -1 };  //row major {target, old_agent_pos, others...}
 
 
           

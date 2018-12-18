@@ -36,7 +36,7 @@ int main(void) {
 		std::cout << "start ref: " << x << ", " << y << std::endl;
 
 		float *data = new float[8]{ 0, x, 1,  1,
-									0, y, 1, -1 };  //row mayor {target, old_agent_pos, others...}
+									0, y, 1, -1 };  //row major {target, old_agent_pos, others...}
 
 
 		float *outRef = new float[2];
