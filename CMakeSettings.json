@@ -1,0 +1,52 @@
+{
+    // See https://go.microsoft.com//fwlink//?linkid=834763 for more information about this file.
+  "configurations": [
+    {
+      "name": "x64-Release",
+      "generator": "Ninja",
+      "configurationType": "Release",
+      "inheritEnvironments": [ "msvc_x64" ],
+      "buildRoot": "${projectDir}\\build\\Release_x64",
+      "installRoot": "C:\\Libraries",
+      "cmakeCommandArgs": "",
+      "buildCommandArgs": "",
+      "ctestCommandArgs": "",
+      "variables": []
+    },
+    {
+      "name": "x64-Debug",
+      "generator": "Ninja",
+      "configurationType": "Debug",
+      "inheritEnvironments": [ "msvc_x64" ],
+      "buildRoot": "${projectDir}\\build\\Debug_x64",
+      "installRoot": "${env.ProgramFiles}\\${name}",
+      "cmakeCommandArgs": "",
+      "buildCommandArgs": "",
+      "ctestCommandArgs": "",
+      "variables": []
+    },
+    {
+      "name": "Linux-Release-ARM",
+      "generator": "Unix Makefiles",
+      "remoteMachineName": "160.80.97.118",
+      "configurationType": "Release",
+      "remoteCMakeListsRoot": "/var/tmp/src/${workspaceHash}/${name}",
+      "cmakeExecutable": "/usr/local/bin/cmake",
+      "buildRoot": "${env.LOCALAPPDATA}\\CMakeBuilds\\${workspaceHash}\\build\\${name}",
+      "remoteBuildRoot": "/var/tmp/build/${workspaceHash}/build/${name}",
+      "remoteCopySources": true,
+      "remoteCopySourcesOutputVerbosity": "Normal",
+      "remoteCopySourcesConcurrentCopies": "10",
+      "cmakeCommandArgs": "",
+      "buildCommandArgs": "",
+      "ctestCommandArgs": "",
+      "inheritEnvironments": [ "linux_arm" ],
+      "variables": [
+        {
+          "name": "ARCH_SPECIFIC",
+          "value": "-march=armv7-a -mfpu=neon -mfloat-abi=hard -flax-vector-conversions"
+        }
+      ]
+    }
+  ]
+}
