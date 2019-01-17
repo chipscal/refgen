@@ -111,7 +111,7 @@ extern "C" {
 	* @param data float pointer to data memory with the following properties:
 	*	- rank: 2
 	*	- shape: spaceSize x length
-	*	- memory layout: row mayor (e.g. x1, x2, ..., xk, y1, y2, ..., yk, ...)
+	*	- memory layout: row major (e.g. x1, x2, ..., xk, y1, y2, ..., yk, ...)
 	*	- data meaning: [target agentActualPosition othersPosition...].
 	* @param spaceSize space dimension (e.g planar -> 2)
 	* @param length number of columns of the data memory (e.g. 2 + number of visible other agents).
@@ -124,7 +124,7 @@ extern "C" {
 	* @param data double pointer to data memory with the following properties:
 	*	- rank: 2
 	*	- shape: spaceSize x length
-	*	- memory layout: row mayor (e.g. x1, x2, ..., xk, y1, y2, ..., yk, ...)
+	*	- memory layout: row major (e.g. x1, x2, ..., xk, y1, y2, ..., yk, ...)
 	*	- data meaning: [target agentActualPosition othersPosition...].
 	* @param spaceSize space dimension (e.g planar -> 2)
 	* @param length number of columns of the data memory (e.g. 2 + number of visible other agents).

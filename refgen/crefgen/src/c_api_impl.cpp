@@ -16,7 +16,8 @@ template<typename R>
 inline void *new_refgen(R alpha_rate1, R r1, R alpha_rate2, R r2, R max_ni, R alpha_slow, R d_gauss, R min_alpha_gauss, R max_var, 
 	size_t max_iter = 120, R max_delta = 0.3, R a = 0.4, R A = 1, R alpha = 0.602, R c = 0.1, R gamma = 0.1) {
 	
-	return new rg::Refgen<R>(alpha_rate1, r1, alpha_rate2, r2, alpha_slow, max_var, max_iter, max_delta, a, A, alpha, c, gamma);
+	return new rg::Refgen<R>(alpha_rate1, r1, alpha_rate2, r2, max_ni, alpha_slow, d_gauss, min_alpha_gauss, max_var,
+							max_iter, max_delta, a, A, alpha, c, gamma);
 }
 
 template<typename R>
