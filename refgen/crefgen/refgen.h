@@ -158,7 +158,7 @@ namespace rg {
 				R normalization = _max_var / variation_eval;
 				theta = actualPos + (theta - actualPos) * normalization;
 
-				toRet = costfnc<R>(ref_map, &params);
+				toRet = costfncV2<R>(ref_map, &params);
 			}
 
 			xtc::xarray_copy_raw(theta, ref);
