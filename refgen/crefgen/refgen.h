@@ -32,9 +32,10 @@ namespace rg {
 	class Refgen {
 
 	private:
-		costParam<R> params;
+		costParamV2<R> params;
 		R _alpha_rate1, _alpha_rate2;
 		R _max_var;
+		R _max_ni;
 		size_t _max_iter;
 		R _max_delta, _a, _A, _alpha, _c, _gamma;
 	public:
@@ -44,7 +45,10 @@ namespace rg {
 		* @param r1 external attractive constrain radius.
 		* @param alpha_rate2 growth rate of the internal constrain multiplier.
 		* @param r2 internal repulsive constrain radius.
+		* @param max_ni multipliers saturation.
 		* @param alpha_slow dynamic friction coefficient.
+		* @param d_gauss safe distance among agents.
+		* @param min_alpha_gauss minimum value for the gauss repulsive distribution of the agent respect others.
 		* @param max_var maximum distance of the new reference with respect to the actual position.
 		* @param max_iter SPSA number of iteration for each reference computation (use: 120).
 		* @param max_delta SPSA maximal perturbation admitted (use: 0.3).
@@ -54,7 +58,7 @@ namespace rg {
 		* @param c SPSA initial perturbation coefficient (use: 0.1).
 		* @param gamma SPSA perturbation coefficient decay rate (use: 0.1).
 		*/
-		Refgen(R alpha_rate1, R r1, R alpha_rate2, R r2, R alpha_slow, R max_var, 
+		Refgen(R alpha_rate1, R r1, R alpha_rate2, R r2, R max_ni, R alpha_slow, R d_gauss, R min_alpha_gauss, R max_var, 
 			size_t max_iter = 120, R max_delta = 0.3, R a = 0.4, R A = 1, R alpha = 0.602, R c = 0.1, R gamma = 0.1) : params(){
 			
 			_alpha_rate1 = alpha_rate1;
@@ -64,6 +68,7 @@ namespace rg {
 
 			_max_iter = max_iter;
 			_max_delta = max_delta;
+			_max_ni = max_ni;
 			_a = a;
 			_A = A;
 			_alpha = alpha;
@@ -75,6 +80,8 @@ namespace rg {
 			params.ni2 = 0;
 			params.r1 = r1;
 			params.r2 = r2;
+			params.D_gauss = d_gauss;
+			params.min_alpha_gauss = min_alpha_gauss;
 			
 		}
 
@@ -124,7 +131,7 @@ namespace rg {
 			R cstr2_err = targetSqDist_eval - params.r2*params.r2;
 			
 
-			params.ni1 = params.ni1 + _alpha_rate1 * cstr1SqErr;
+			params.ni1 = std::min(params.ni1 + _alpha_rate1 * cstr1SqErr, _max_ni);
 
 
 			if (cstr2_err > 0) {
@@ -140,7 +147,7 @@ namespace rg {
 			xt::xarray<R> theta(std::vector<size_t>{spaceSize, 1});
 			xt::noalias(theta) = actualPos * 1; //this makes a copy!
 
-			R toRet = SPSA<R, xt::xarray<R>>(costfnc, theta, _max_iter, _max_delta, _a, _A, _alpha, _c, _gamma, &params);
+			R toRet = SPSA<R, xt::xarray<R>>(costfncV2, theta, _max_iter, _max_delta, _a, _A, _alpha, _c, _gamma, &params);
 
 			
 			auto variation = xt::norm_l2(ref_map - actualPos, { 0 });

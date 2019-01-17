@@ -27,7 +27,7 @@ int main(void) {
 	int episode_size = 200;
 	
 	for (int m = 0; m < num_episodes; m++) {
-		rg::Refgen<float> gen(0.01f, 1.414f, 1000.0f, 0.0001f, 6.0f, 0.5f);
+		rg::Refgen<float> gen(0.01f, 1.414f, 1000.0f, 0.0001f, 500.0f, 6.0f, 1.5f, 30.0f, 0.3f);
 
 		float magnitude = 20;
 		float x = magnitude * (static_cast <float> (rand()) / static_cast <float> (RAND_MAX) - 0.5f);

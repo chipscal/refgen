@@ -7,7 +7,7 @@
 *																			*
 ****************************************************************************/
 
-#include "rgcommon.h"
+#include "../rgcommon.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -18,12 +18,16 @@ extern "C" {
 	* @param r1 external attractive constrain radius.
 	* @param alpha_rate2 growth rate of the internal constrain multiplier.
 	* @param r2 internal repulsive constrain radius.
+	* @param max_ni multipliers saturation.
 	* @param alpha_slow dynamic friction coefficient.
+	* @param d_gauss safe distance among agents.
+	* @param min_alpha_gauss minimum value for the gauss repulsive distribution of the agent respect others.
 	* @param max_var maximum distance of the new reference with respect to the actual position.
 	* @see SPSA
 	* @see Refgen
 	*/
-	RG_API void * __stdcall new_refgen_float(float alpha_rate1, float r1, float alpha_rate2, float r2 , float alpha_slow, float max_var);
+	RG_API void * __stdcall new_refgen_float(float alpha_rate1, float r1, float alpha_rate2, float r2 , float max_ni, float alpha_slow,
+											 float d_gauss, float min_alpha_gauss, float max_var);
 
 
 	/** Allocates a single precision reference generator specifing the SPSA algorithm parameters.
@@ -31,7 +35,10 @@ extern "C" {
 	* @param r1 external attractive constrain radius.
 	* @param alpha_rate2 growth rate of the internal constrain multiplier.
 	* @param r2 internal repulsive constrain radius.
+	* @param max_ni multipliers saturation.
 	* @param alpha_slow dynamic friction coefficient.
+	* @param d_gauss safe distance among agents.
+	* @param min_alpha_gauss minimum value for the gauss repulsive distribution of the agent respect others.
 	* @param max_var maximum distance of the new reference with respect to the actual position.
 	* @param max_iter SPSA number of iteration for each reference computation (use: 120).
 	* @param max_delta SPSA maximal perturbation admitted (use: 0.3).
@@ -43,7 +50,8 @@ extern "C" {
 	* @see SPSA
 	* @see Refgen
 	*/
-	RG_API void * __stdcall new_refgen_float_ext(float alpha_rate1, float r1, float alpha_rate2, float r2, float alpha_slow, float max_var, 
+	RG_API void * __stdcall new_refgen_float_ext(float alpha_rate1, float r1, float alpha_rate2, float r2, float max_ni, float alpha_slow,
+									float d_gauss, float min_alpha_gauss, float max_var,
 									unsigned int max_iter, float max_delta, float a, float A, float alpha, float c, float gamma);
 
 	/** Allocates a double precision reference generator.
@@ -51,19 +59,26 @@ extern "C" {
 	* @param r1 external attractive constrain radius.
 	* @param alpha_rate2 growth rate of the internal constrain multiplier.
 	* @param r2 internal repulsive constrain radius.
+	* @param max_ni multipliers saturation.
 	* @param alpha_slow dynamic friction coefficient.
+	* @param d_gauss safe distance among agents.
+	* @param min_alpha_gauss minimum value for the gauss repulsive distribution of the agent respect others.
 	* @param max_var maximum distance of the new reference with respect to the actual position.
 	* @see SPSA
 	* @see Refgen
 	*/
-	RG_API void * __stdcall new_refgen_double(double alpha_rate1, double r1, double alpha_rate2, double r2, double alpha_slow, double max_var);
+	RG_API void * __stdcall new_refgen_double(double alpha_rate1, double r1, double alpha_rate2, double r2, double max_ni, double alpha_slow,
+											  double d_gauss, double min_alpha_gauss, double max_var);
 
 	/** Allocates a single precision reference generator specifying the SPSA algorithm parameters.
 	* @param alpha_rate1 growth rate of the external constrain multiplier.
 	* @param r1 external attractive constrain radius.
 	* @param alpha_rate2 growth rate of the internal constrain multiplier.
 	* @param r2 internal repulsive constrain radius.
+	* @param max_ni multipliers saturation.
 	* @param alpha_slow dynamic friction coefficient.
+	* @param d_gauss safe distance among agents.
+	* @param min_alpha_gauss minimum value for the gauss repulsive distribution of the agent respect others.
 	* @param max_var maximum distance of the new reference with respect to the actual position.
 	* @param max_iter SPSA number of iteration for each reference computation (use: 120).
 	* @param max_delta SPSA maximal perturbation admitted (use: 0.3).
@@ -75,8 +90,9 @@ extern "C" {
 	* @see SPSA
 	* @see Refgen
 	*/
-	RG_API void * __stdcall new_refgen_double_ext(double alpha_rate1, double r1, double alpha_rate2, double r2, double alpha_slow, double max_var,
-		unsigned int max_iter, double max_delta, double a, double A, double alpha, double c, double gamma);
+	RG_API void * __stdcall new_refgen_double_ext(double alpha_rate1, double r1, double alpha_rate2, double r2, double max_ni, double alpha_slow,
+												  double d_gauss, double min_alpha_gauss, double max_var,
+												  unsigned int max_iter, double max_delta, double a, double A, double alpha, double c, double gamma);
 
 	/** Destroy a single precision reference generator.
 	* @param refgen pointer to a single precision reference generator to destroy.

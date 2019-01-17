@@ -46,12 +46,14 @@ int main(void) {
 	for (int k = 0; k < 8; k++) {
 		std::cout << neigh[k] << " "; 
 	}
-	rg::costParam<float> ciao;
+	rg::costParamV2<float> ciao;
 	ciao.alpha_slow = 0.1f;
 	ciao.ni1 = 0;
 	ciao.ni2 = 0;
-	ciao.r1 = 0.2f;
-	ciao.r2 = 3;
+	ciao.r1 = 3;
+	ciao.r2 = 0.2f;
+	ciao.min_alpha_gauss = 30;
+	ciao.D_gauss = 2.0f;
 	ciao.data_raw.data =(char *) neigh;
 	ciao.data_raw.shape = shape;
 	ciao.data_raw.rank = 2;
@@ -59,7 +61,7 @@ int main(void) {
 	float val;
 	auto t1 = std::chrono::high_resolution_clock::now();
 	for (int k = 0; k < 200; k++)
-		val = rg::costfnc<float>(xt::zeros<float>({ 2, 1 }), &ciao);
+		val = rg::costfncV2<float>(xt::zeros<float>({ 2, 1 }), &ciao);
 	auto t2 = std::chrono::high_resolution_clock::now();
 	std::cout << "val: " << val << std::endl;
 

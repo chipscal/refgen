@@ -13,7 +13,7 @@ vectorization.
 
 * **Luca Calacci** - University of Rome "Tor Vergata" - luca.calacci@gmail.com - *Design and Implementation*
     
-* **Giovanni de Carolis** - University of Rome "Tor Vergata" - *Design* 
+* **Giovanni de Carolis** - University of Rome "Tor Vergata" - decarolisgio@gmail.com - *Design* 
 
 ## Getting Started
 
@@ -71,7 +71,7 @@ The following example
         int episode_size = 200;
 
         // creates a single precision reference generator
-        void *refgen = new_refgen_float(0.01f, 1.414f, 1000.0f, 0.0001f, 6.0f, 0.5f);
+        void *refgen = new_refgen_float(0.01f, 1.414f, 1000.0f, 0.0001f, 500.0f, 6.0f, 1.5f, 30.0f, 0.3f);
         if (refgen == NULL){
             return -1;
         }
